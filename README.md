@@ -1,5 +1,6 @@
 # ditdah
-a commandline morse app
+The stupid app that turns your boring texts into annoying beeps and back… 
+because sometimes you just need to feel like a 19th-century spy.
 
 This project is an idea from francitoshi@gmail.com, inspired by cw 
 app, and is developed by Francitoshi and Friends.
