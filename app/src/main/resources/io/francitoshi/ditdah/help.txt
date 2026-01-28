@@ -1,0 +1,73 @@
+ditdah {$VERSION} Copyright (c) 2026 francitoshi@gmail.com : {$DATE}
+
+Usage: ditdah COMMAND [OPTIONS]
+
+The stupid app that turns your boring texts into annoying beeps and back… 
+because sometimes you just need to feel like a 19th-century spy.
+
+Commands:
+  encode                convert ASCII text to Morse code
+  decode                convert Morse code to ASCII text
+  play                  convert ASCII text to CW (audio)
+  listen                convert CW (audio) to ASCII text
+
+Options:
+
+  -i, --input=FILE      input file 
+                        default: stdin for text, microphone for audio
+  -o, --output=FILE     output file
+                        default: stdout for text, speaker for audio
+  -w, --wpm=WPM         set words per minute (using PARIS)
+                        valid values: 4 - 60
+                        default value: 12
+  -e, --ewpm=WPM        set effective words per minute (Farnsworth spacing)
+                        valid values: 4 - 60
+                        default value: 12
+  -f, --freq=HZ         set tone to HZ
+                        valid values: 20 - 4000
+                        default value: 800
+  -v, --volume=PERCENT  set initial volume to PERCENT
+                        valid values: 1 - 100
+                        default value: 70
+  -W, --wave=TYPE       wave type for audio
+                        valid values: sine , square, sawtooth, triangle.
+                        default value: sine
+  -s, --sample-rate=HZ  audio sample rate 
+                        valid values: 8000-48100
+                        default value: 44100
+  -h, --help            Display this help message and exit
+  -L, --license         Display license information and exit
+  -V, --version         Display version information and exit
+
+Examples:
+  ditdah encode -i message.txt -o morse.txt
+      Encode ASCII text file to Morse code text file
+
+  ditdah encode < input.txt > output.txt
+      Encode from stdin to stdout
+
+  ditdah decode -i morse.txt -o message.txt
+      Decode Morse code text file to ASCII text file
+
+  ditdah play -i message.txt -o morse.wav
+      Generate audio file from ASCII text
+
+  ditdah play -i message.txt
+      Play ASCII text as Morse code through speakers
+
+  ditdah listen -i recording.wav -o message.txt
+      Decode audio file to ASCII text
+
+  ditdah listen -o message.txt
+      Listen to microphone and decode to text file
+
+  echo "<SOS>" | ditdah encode | ditdah decode
+      Pipeline example: encode and decode
+
+Notes:
+  - Text input accepts A-Z, 0-9, and common punctuation
+  - Morse code uses dots (.) and dashes (-) separated by spaces
+  - Letters are separated by spaces, words by " / "
+  - Audio format: WAV, 16-bit PCM, mono
+
+Report bugs to: <https://github.com/francitoshi/ditdah/issues>

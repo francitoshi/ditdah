@@ -1,0 +1,85 @@
+plugins
+{
+    id 'java'
+    id 'application'
+}
+
+group = 'com.github.francitoshi'
+
+repositories
+{
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+def nutVersion = '0.1.50'
+def bouncycastleVersion = '1.81'
+
+configurations.all 
+{
+    resolutionStrategy 
+    {
+        force "com.github.francitoshi:nut-base:${nutVersion}"
+        force "com.github.francitoshi:nut-core:${nutVersion}"
+        force "com.github.francitoshi:nut-headless:${nutVersion}"
+        force "org.bouncycastle:bcprov-jdk18on:${bouncycastleVersion}"
+        force "org.bouncycastle:bcpkix-jdk18on:${bouncycastleVersion}"
+        //failOnVersionConflict()
+    }
+}
+
+dependencies
+{
+    implementation "com.github.francitoshi:nut-base:${nutVersion}"
+    implementation "com.github.francitoshi:nut-core:${nutVersion}"
+    implementation "com.github.francitoshi:nut-headless:${nutVersion}"
+
+    implementation "org.bouncycastle:bcprov-jdk18on:${bouncycastleVersion}"
+    implementation "org.bouncycastle:bcpkix-jdk18on:${bouncycastleVersion}"
+    
+    // Use JUnit Jupiter for testing.
+    testImplementation libs.junit.jupiter
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // This dependency is used by the application.
+    implementation libs.guava
+}
+
+java
+{
+    toolchain
+    {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+application
+{
+    mainClass = 'io.francitoshi.ditdah.Main'
+}
+jar 
+{
+    manifest 
+    {
+        attributes 'Main-Class': 'io.francitoshi.ditdah.Main'
+        attributes 'Implementation-Version': project.version
+        attributes 'Implementation-Title': project.name
+        attributes 'Implementation-Version': project.version
+        attributes 'Implementation-Vendor': 'francitoshi@gmail.com'        
+    }
+}
+
+tasks.named('test')
+{
+    useJUnitPlatform()
+}
+
+task createDistribution(type: Copy) 
+{
+    from jar
+    from configurations.runtimeClasspath
+    into "${buildDir}/distribution"
+}
+
+build.dependsOn createDistribution
