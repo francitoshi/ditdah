@@ -1,4 +1,7 @@
-ditdah {$VERSION} {$DATE} A Morse code and CW utility
+ditdah {$VERSION} {$DATE}
+
+The stupid app that turns your boring texts into annoying beeps and back… 
+because sometimes you just need to feel like a 19th-century spy.
 
 Copyright (C) 2026  francitoshi@gmail.com
 

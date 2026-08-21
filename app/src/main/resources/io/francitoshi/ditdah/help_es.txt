@@ -1,0 +1,74 @@
+ditdah v{$VERSION} ({$DATE})
+
+Copyright (c) 2026 francitoshi@gmail.com
+
+Usage: ditdah COMANDO [OPCIONES]
+
+La estúpida aplicación que convierte tus aburridos mensajes en pitidos molestos y viceversa...
+Porque a veces necesitas sentirte como un espía del siglo XIX.
+
+Comandos:
+  e, encode             convertir texto ASCII a código Morse
+  d, decode             convertir código Morse a texto ASCII
+  p, play               convertir texto ASCII a CW (audio)
+  t, listen             convertir CW (audio) a texto ASCII
+  T, tutor              tutorial para aprender/practicar Morse
+
+Opciones:
+  -i, --input=FILE      archivo de entrada
+                        por defecto: stdin para texto, microphone para audio
+  -o, --output=FILE     archivo de salida
+                        por defecto: stdout para texto, speaker para audio
+  -w, --wpm=WPM         palabras por minuto (usando PARIS)
+                        rango valido: 4 - 80
+                        por defecto: 12
+  -e, --ewpm=WPM        palabras efectivas por minuto (espaciado Farnsworth)
+                        rango valido: 4 - 80
+                        por defecto: 12
+  -f, --freq=HZ         set tone freq to HZ
+                        rango valido: 20 - 4000
+                        por defecto: 800
+  -v, --volume=PERCENT  set initial volume to PERCENT
+                        rango valido: 1 - 100
+                        por defecto: 70
+  -W, --wave=TYPE       wave type for audio
+                        rango valido: sine , square, sawtooth, triangle.
+                        por defecto: sine
+  -s, --sample-rate=HZ  ratio de muestras de audio
+                        rango valido: 8000-48100
+                        por defecto: 44100
+  -h, --help            Display this help message and exit
+  -v, --version         Display version information and exit
+
+Ejemplos:
+  ditdah encode -i message.txt -o morse.txt
+        Codificar de archivo de texto ASCII a archivo de texto Morse
+
+  ditdah encode < input.txt > output.txt
+        Codificar de entrada estándar a salida estándar
+
+  ditdah decode -i morse.txt -o message.txt
+        Decodificar archivo de texto en código Morse a archivo de texto ASCII
+
+  ditdah play -i message.txt -o morse.wav
+        Generar archivo de audio a partir de texto ASCII
+
+  ditdah play -i message.txt
+        Reproducir texto ASCII en código Morse a través de altavoces
+
+  ditdah listen -i recording.wav -o message.txt
+        Decodificar archivo de audio a texto ASCII
+
+  ditdah listen -o message.txt
+        escuchar micrófono y decodificar a archivo de texto
+
+  echo "<SOS>" | ditdah encode | ditdah decode
+        Ejemplo de pipeline: codificar y decodificar
+
+Notas:
+  - La entrada de texto acepta A-Z, 0-9 y puntuación común.
+  - El código Morse usa puntos (.) y guiones (-) separados por espacios.
+  - Las letras se separan por espacios, las palabras por "/".
+  - Formato de audio: WAV, PCM de 16 bits, mono.
+
+Reportar errores a: <https://github.com/francitoshi/ditdah/issues>

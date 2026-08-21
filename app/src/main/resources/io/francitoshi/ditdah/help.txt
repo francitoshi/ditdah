@@ -1,4 +1,6 @@
-ditdah {$VERSION} Copyright (c) 2026 francitoshi@gmail.com : {$DATE}
+ditdah v{$VERSION} ({$DATE})
+
+Copyright (c) 2026 francitoshi@gmail.com
 
 Usage: ditdah COMMAND [OPTIONS]
 
@@ -6,35 +8,35 @@ The stupid app that turns your boring texts into annoying beeps and back…
 because sometimes you just need to feel like a 19th-century spy.
 
 Commands:
-  encode                convert ASCII text to Morse code
-  decode                convert Morse code to ASCII text
-  play                  convert ASCII text to CW (audio)
-  listen                convert CW (audio) to ASCII text
+  e, encode             convert ASCII text to Morse code
+  d, decode             convert Morse code to ASCII text
+  p, play               convert ASCII text to CW (audio)
+  t, listen             convert CW (audio) to ASCII text
+  T, tutor              tutorial to learn  Morse Code
 
 Options:
-
   -i, --input=FILE      input file 
                         default: stdin for text, microphone for audio
   -o, --output=FILE     output file
                         default: stdout for text, speaker for audio
   -w, --wpm=WPM         set words per minute (using PARIS)
                         valid values: 4 - 60
-                        default value: 12
+                        default: 12
   -e, --ewpm=WPM        set effective words per minute (Farnsworth spacing)
                         valid values: 4 - 60
-                        default value: 12
-  -f, --freq=HZ         set tone to HZ
+                        default: 12
+  -f, --freq=HZ         set tone freq to HZ
                         valid values: 20 - 4000
-                        default value: 800
+                        default: 800
   -v, --volume=PERCENT  set initial volume to PERCENT
                         valid values: 1 - 100
-                        default value: 70
+                        default: 70
   -W, --wave=TYPE       wave type for audio
                         valid values: sine , square, sawtooth, triangle.
-                        default value: sine
+                        default: sine
   -s, --sample-rate=HZ  audio sample rate 
                         valid values: 8000-48100
-                        default value: 44100
+                        default: 44100
   -h, --help            Display this help message and exit
   -L, --license         Display license information and exit
   -V, --version         Display version information and exit
